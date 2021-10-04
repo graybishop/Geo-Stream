@@ -1,11 +1,11 @@
 
-var storageArray = []
+let storageArray = []
 
 
 
 
-var form = document.querySelector("#form")
-var searchBar = document.querySelector("#search")
+let form = document.querySelector("#form")
+let searchBar = document.querySelector("#search")
 
 // form.addEventListener()
 if (localStorage.getItem('recentMovieSearches') !== null) {
@@ -18,9 +18,22 @@ function handleForm(event) {
 
     storageArray.push(searchBar.value)
     localStorage.setItem('recentMovieSearches', JSON.stringify(storageArray));
-
+makeRecentSearches()
 }
 form.addEventListener('submit', handleForm)
+
+let searches = document.querySelector('#recent-searches');
+console.log(searches)
+function makeRecentSearches(){
+    searches.innerHTML = ""
+    storageArray.forEach((item)=>{
+        let li = document.createElement("li");
+        li.innerHTML = item;
+        searches.append(li);
+      }) 
+}
+
+makeRecentSearches()
 
 
 
@@ -29,12 +42,11 @@ const renderMovieCard = (title, bodyText) => {
    let cardEl = document.createElement('div')
    let titleEl = document.createElement('h3')
    let descriptionEl = document.createElement('p')
-   console.log(titleEl)
-
-   titleEl.textContent =title
+   
+   titleEl.textContent = title
    descriptionEl.textContent =bodyText
 
-   cardEl.append(title)
+   cardEl.append(titleEl)
    cardEl.append(descriptionEl)
    
    document.querySelector('#results-container').append(cardEl)
