@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- like to tailwind css -->
+    <link href="tailwind.css" rel="stylesheet">
     <title>GeoStream</title>
 </head>
 
@@ -27,21 +29,24 @@
     <div class="container">
         <form id="form">
             <input type="text" id="search" placeholder="Search..">
-            <button type="submit">Search</button>
+            <button type="submit" class='btn'>Search</button>
         </form>
+
+        <!--genres will need onclick even from JS-->
         <div class="genres">
-            <!--generes will need onclick even from JS-->
             <h2>Action</h2>
             <h2>Horror</h2>
-            <h2>Commedy</h2>
+            <h2>Comedy</h2>
             <h2>Drama</h2>
             <h2>Sci-fi</h2>
         </div>
     </div>
+
+    <!-- container for result cards -->
     <div id='recent-searches'>
-        
 
     </div>
+
     <div id='results-container'>
 
     </div>
