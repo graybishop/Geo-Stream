@@ -47,22 +47,58 @@ function makeRecentSearches() {
 
 makeRecentSearches();
 
-//given a card title, and body text, renders the result into the results container
-const renderMovieCard = (title, bodyText) => {
+//given an object with the properties title, plot, year, and services this function renders the result into the results container
+const renderMovieCard = ({title, plot, year, services}) => {
   let cardEl = document.createElement("div");
+  let mainEl = document.createElement("div");
+
+  let headerEl =document.createElement('div')
   let titleEl = document.createElement("h3");
+  let yearEl = document.createElement("p");
+
+  let bodyEl = document.createElement('div')
   let descriptionEl = document.createElement("p");
+ 
+  let servicesEl = document.createElement('div')
+
+  services.forEach(element => {
+   let newP = document.createElement('a')
+   newP.textContent = element.name
+   newP.href = element.url
+   newP.classList.add('test')
+   servicesEl.append(newP)
+  });
 
   titleEl.textContent = title;
-  descriptionEl.textContent = bodyText;
+  yearEl.textContent = year;
+  descriptionEl.textContent = plot;
 
-  cardEl.append(titleEl);
-  cardEl.append(descriptionEl);
+  headerEl.append(titleEl)
+  headerEl.append(yearEl)
+  
+  bodyEl.append(descriptionEl);
+
+  mainEl.append(headerEl)
+  mainEl.append(bodyEl)
+  cardEl.append(mainEl)
+  cardEl.append(servicesEl)
+
+  cardEl.classList.add('rounded','border', 'bg-gray-200', 'text-black', 'p-4', 'shadow-md', 'relative', 'flex', 'flex-row')
+  titleEl.classList.add('font-bold')
+  yearEl.classList.add('font-bold', 'text-gray-500')
+
+  mainEl.classList.add('flex-1', 'pr-4')
+  servicesEl.classList.add('font-bold', 'text-red-500', 'flex', 'flex-col', 'justify-end', 'w-24')
 
   document.querySelector("#results-container").append(cardEl);
 };
 
-renderMovieCard("The Matrix", "lorem ipsum");
+//example cards for styling
+renderMovieCard({title: 'The Matrix', year: '1999', plot: 'When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.', services: [{name:'Netflix', url:'netflix.com'}, {name:'Hulu', url:'Hulu.com'} , {name:'YoutubeTV', url:'yotube.com'}]});
+
+renderMovieCard({title: 'The Matrix Reloaded', year: '2003', plot: 'Freedom fighters Neo, Trinity and Morpheus continue to lead the revolt against the Machine Army, unleashing their arsenal of extraordinary skills and weaponry against the systematic forces of repression and exploitation.' , services: [{name:'Netflix', url:'netflix.com'}, {name:'Hulu', url:'Hulu.com'} , {name:'YoutubeTV', url:'yotube.com'}]});
+
+renderMovieCard({title: 'The Matrix Revolutions', year: '2003', plot: 'The human city of Zion defends itself against the massive invasion of the machines as Neo fights to end the war at another front while also opposing the rogue Agent Smith.' , services: [{name:'Netflix', url:'netflix.com'}, {name:'Hulu', url:'Hulu.com'} , {name:'YoutubeTV', url:'yotube.com'}]});
 
 function getMovieId(event) {
   event.preventDefault();
