@@ -55,6 +55,12 @@ function makeRecentSearches() {
 }
 
 makeRecentSearches();
+let clearButton = document.querySelector("#clearSearch")
+clearButton.addEventListener("click", clearClick);
+function clearClick(){
+    localStorage.clear();
+    document.getElementById("recent-searches").innerHTML = "";
+}
 
 //given an object with the properties title, plot, year, and services this function renders the result into the results container
 const renderMovieCard = ({title, year, plot, services}) => {
