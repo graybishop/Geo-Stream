@@ -1,6 +1,5 @@
 
-var searchForm = document.querySelector("#form");
-var searchInput = document.querySelector("#search");
+
 
 var movieTitle = "avengers";
 // var movieIdLookupUrl = "http://www.omdbapi.com/?apikey=e3a5e648&t=" + movieTitle;
