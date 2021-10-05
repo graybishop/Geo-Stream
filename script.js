@@ -22,7 +22,7 @@ let searchBar = document.querySelector("#search");
 if (localStorage.getItem("recentMovieSearches") !== null) {
   storageArray = JSON.parse(localStorage.getItem("recentMovieSearches"));
 }
-// storageArray = localStorage.getItem('recentMovieSearches')
+
 
 function handleForm(event) {
   event.preventDefault();
