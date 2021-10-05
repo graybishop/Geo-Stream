@@ -57,7 +57,7 @@ function makeRecentSearches() {
 makeRecentSearches();
 
 //given an object with the properties title, plot, year, and services this function renders the result into the results container
-const renderMovieCard = ({title, plot, year, services}) => {
+const renderMovieCard = ({title, year, plot, services}) => {
   let cardEl = document.createElement("div");
   let mainEl = document.createElement("div");
 
@@ -194,6 +194,7 @@ function getStreamingServicesMovTv(imdbId, entertainmentType) {
         }
         console.log(services);
         console.log(obj);
+        renderMovieCard(obj);
       } else {
         console.log("No streaming services.");
       }
@@ -227,9 +228,11 @@ function getStreamingServicesTvSeason(
       if (data.results.US.flatrate != null) {
         for (var j = 0; j < data.results.US.flatrate.length; j++) {
           services[j] = data.results.US.flatrate[j].provider_name;
-          obj.services
+          obj.services[j] = {name: services[j] = data.results.US.flatrate[j].provider_name};
         }
         console.log(services);
+        console.log(obj);
+        renderMovieCard(obj);
       } else {
         console.log("No streaming services.");
       }
