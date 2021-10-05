@@ -1,7 +1,16 @@
 var searchForm = document.querySelector("#form");
 var searchInput = document.querySelector("#search");
 
-var movieTitle = "avengers";
+var obj = {
+    title: "",
+    year: "",
+    plot: "",
+    services: []
+}
+
+var movieTitle;
+var year;
+var plot;
 // var movieIdLookupUrl = "http://www.omdbapi.com/?apikey=e3a5e648&t=" + movieTitle;
 // var movieServicesLookupUrl = "https://api.themoviedb.org/3/movie/550?api_key=" + movieDBApiKey + "/movie/" + {movie_id} + "/watch/providers";
 // var varifyId = "https://api.themoviedb.org/3/find/" + imdbId + "?api_key=" + movieDBApiKey + "&&external_source=imdb_id";
@@ -100,6 +109,8 @@ renderMovieCard({title: 'The Matrix Reloaded', year: '2003', plot: 'Freedom figh
 
 renderMovieCard({title: 'The Matrix Revolutions', year: '2003', plot: 'The human city of Zion defends itself against the massive invasion of the machines as Neo fights to end the war at another front while also opposing the rogue Agent Smith.' , services: [{name:'Netflix', url:'netflix.com'}, {name:'Hulu', url:'Hulu.com'} , {name:'YoutubeTV', url:'yotube.com'}]});
 
+// this gets the IMDB movie id from the open movie database when the user inputs a title. 
+// Then it uses that id to call varifyId function.
 function getMovieId(event) {
   event.preventDefault();
   var movieTitle = searchInput.value.trim();
@@ -111,12 +122,18 @@ function getMovieId(event) {
     })
     .then(function (data) {
       console.log(data);
+      obj.title = data.Title;
+      obj.year = data.Year;
+      obj.plot = data.Plot;
       console.log(data.imdbID);
       Id = data.imdbID;
       varifyId(Id);
     });
 }
 
+// This uses the IMDB id to find the moviedb id.
+// Then using the moviedb id it will varify if it is a "movie", "tv show", or "tv season".
+// Then it will change the entertainment type and call the get streaming services function
 function varifyId(idToVarify) {
   var findId =
     "https://api.themoviedb.org/3/find/" +
@@ -154,6 +171,8 @@ function varifyId(idToVarify) {
     });
 }
 
+// This will use the movieDB id and the entertainment 
+// type variables to return the services providers or will prompt the user there are none.
 function getStreamingServicesMovTv(imdbId, entertainmentType) {
   var movieServicesLookupUrl =
     "https://api.themoviedb.org/3/" +
@@ -171,14 +190,18 @@ function getStreamingServicesMovTv(imdbId, entertainmentType) {
       if (data.results.US.flatrate != null) {
         for (var j = 0; j < data.results.US.flatrate.length; j++) {
           services[j] = data.results.US.flatrate[j].provider_name;
+          obj.services[j] = {name: services[j] = data.results.US.flatrate[j].provider_name};
         }
         console.log(services);
+        console.log(obj);
       } else {
         console.log("No streaming services.");
       }
     });
 }
 
+// This is the same functionality as getStreamingServicesMovTv function but for tv seasons
+// This will also use the seasonNum with a default value of season 1.
 function getStreamingServicesTvSeason(
   imdbId,
   entertainmentType,
@@ -204,6 +227,7 @@ function getStreamingServicesTvSeason(
       if (data.results.US.flatrate != null) {
         for (var j = 0; j < data.results.US.flatrate.length; j++) {
           services[j] = data.results.US.flatrate[j].provider_name;
+          obj.services
         }
         console.log(services);
       } else {
