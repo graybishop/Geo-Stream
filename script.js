@@ -64,7 +64,7 @@ function clearClick(){
 //given an object with the properties title, plot, year, and services this function renders the result into the results container
 const renderMovieCard = ({title, year, plot, services}) => {
   let cardEl = document.createElement("div");
-  let mainEl = document.createElement("div");
+  let cardTextHolderEl = document.createElement("div");
 
   let headerEl =document.createElement('div')
   let titleEl = document.createElement("h3");
@@ -92,19 +92,24 @@ const renderMovieCard = ({title, year, plot, services}) => {
   
   bodyEl.append(descriptionEl);
 
-  mainEl.append(headerEl)
-  mainEl.append(bodyEl)
-  cardEl.append(mainEl)
+  cardTextHolderEl.append(headerEl)
+  cardTextHolderEl.append(bodyEl)
+  cardEl.append(cardTextHolderEl)
   cardEl.append(servicesEl)
 
-  cardEl.classList.add('rounded','border', 'bg-gray-200', 'text-black', 'p-4', 'shadow-md', 'relative', 'flex', 'flex-row')
+  cardEl.classList.add('rounded','border', 'bg-gray-200', 'text-black', 'p-4', 'shadow-md', 'relative', 'flex', 'flex-row', 'overflow-hidden', 'transition-all', 'transform', 'scale-y-0')
+
   titleEl.classList.add('font-bold')
   yearEl.classList.add('font-bold', 'text-gray-500')
 
-  mainEl.classList.add('flex-1', 'pr-4')
-  servicesEl.classList.add('font-bold', 'text-red-500', 'flex', 'flex-col', 'justify-end', 'w-24')
+  cardTextHolderEl.classList.add('flex-1', 'pr-4')
+  servicesEl.classList.add('font-bold', 'text-red-500', 'flex', 'flex-col', 'justify-end', 'w-40')
 
-  document.querySelector("#results-container").append(cardEl);
+  //adds result to top of list
+  document.querySelector("#results-container").prepend(cardEl);
+  
+  setTimeout(() => {cardEl.classList.remove('scale-0'); cardEl.classList.add('scale-y-100')}, 25)
+
 };
 
 //example cards for styling
