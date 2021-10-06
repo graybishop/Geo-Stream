@@ -36,12 +36,11 @@ const autoCompleteJS = new autoComplete({
     input: {
       selection: (event) => {
         const selection = event.detail.selection.value;
-        if (selection.title != undefined) {
-          autoCompleteJS.input.value = selection.title;
-        } else {
-          //needed because omdb uses capital property names
-          autoCompleteJS.input.value = selection.Title;
-        }
+        autoCompleteJS.input.value = selection.title ? selection.title : selection.Title
+
+        //submits form when a selection is made.
+        document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0')
+        document.querySelector("#form").requestSubmit()
 
       },
       focus: () => {
