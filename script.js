@@ -43,7 +43,7 @@ function handleForm(event) {
 form.addEventListener("submit", handleForm);
 
 let searches = document.querySelector("#recent-searches");
-console.log(searches);
+// console.log(searches);
 function makeRecentSearches() {
   searches.innerHTML = "";
   storageArray.forEach((item) => {
