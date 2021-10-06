@@ -32,7 +32,6 @@ if (localStorage.getItem("recentMovieSearches") !== null) {
   storageArray = JSON.parse(localStorage.getItem("recentMovieSearches"));
 }
 
-
 function handleForm(event) {
   event.preventDefault();
 
@@ -232,18 +231,24 @@ function getStreamingServicesTvSeason(
     })
     .then(function (data) {
       console.log(data);
-      if (!data.results.US.flatrate) {
-        for (var j = 0; j < data.results.US.flatrate.length; j++) {
-          services[j] = data.results.US.flatrate[j].provider_name;
-          obj.services[j] = {name: services[j] = data.results.US.flatrate[j].provider_name};
+      // console.log(Object.keys(data.results.US));
+        // console.log(Object.keys(data.results.US).includes("flatrate"));
+        console.log(Object.keys(data.results));
+        if (Object.keys(data.results).length == 0){
+            obj.services[0] = {name: "No streaming services"}
+        } else if (Object.keys(data.results.US).includes("flatrate")) {
+            for (var j = 0; j < data.results.US.flatrate.length; j++) {
+            services[j] = data.results.US.flatrate[j].provider_name;
+            obj.services[j] = {name: services[j] = data.results.US.flatrate[j].provider_name};
+            } 
+        } else {
+            obj.services[0] = {name: "No streaming services in US"}
         }
         console.log(services);
         console.log(obj);
         renderMovieCard(obj);
-      } else {
-        console.log("No streaming services.");
-      }
-      console.log(data.results.US.flatrate[0].provider_name);
+    
+        console.log("No streaming services");
     });
 }
 
