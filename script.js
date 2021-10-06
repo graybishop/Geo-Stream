@@ -24,23 +24,21 @@ var services = [];
 
 let storageArray = [];
 
-let form = document.querySelector("#form");
 let searchBar = document.querySelector("#search");
 
-// form.addEventListener()
 if (localStorage.getItem("recentMovieSearches") !== null) {
   storageArray = JSON.parse(localStorage.getItem("recentMovieSearches"));
 }
 
 function handleForm(event) {
   event.preventDefault();
-
+  
   storageArray.push(searchBar.value);
   console.log(storageArray);
   localStorage.setItem("recentMovieSearches", JSON.stringify(storageArray));
   //makeRecentSearches();
 }
-form.addEventListener("submit", handleForm);
+searchForm.addEventListener("submit", handleForm);
 
 let searches = document.querySelector("#recent-searches");
 // console.log(searches);
@@ -124,6 +122,7 @@ renderMovieCard({title: 'The Matrix Revolutions', year: '2003', plot: 'The human
 function getMovieId(event) {
   event.preventDefault();
   var movieTitle = searchInput.value.trim();
+  searchForm.reset()
   var movieIdLookupUrl =
     "http://www.omdbapi.com/?apikey=" + omdbApiKey + "&t=" + movieTitle;
   fetch(movieIdLookupUrl)
