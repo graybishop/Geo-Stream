@@ -32,9 +32,19 @@ const autoCompleteJS = new autoComplete({
 
       },
       focus: () => {
-        if (autoCompleteJS.input.value.length) autoCompleteJS.start();
+        if (autoCompleteJS.input.value.length) {
+          document.querySelector('#auto-complete-loading-icon').classList.remove('opacity-0');
+          autoCompleteJS.start()
+        };
       },
       keyup: () => {
+        //shows and hides the loading icon
+        if (autoCompleteJS.input.value.length) {
+          document.querySelector('#auto-complete-loading-icon').classList.remove('opacity-0');
+        } else {
+          document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0');
+        }
+
         //I don't think this if statement is needed (the executed code is the same regardless of the condition.)
         if (!timeoutID) {
           timeoutID = setTimeout(() => {
@@ -50,6 +60,11 @@ const autoCompleteJS = new autoComplete({
           }, 3000);
         }
 
+      },
+      blur: () => {
+        //when the seachbar loses focus close the searchlist and hide the loading icon
+        document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0');
+        autoCompleteJS.close();
       }
     }
   },
