@@ -55,7 +55,7 @@ const autoCompleteJS = new autoComplete({
   },
   resultsList: {
     // add styling to the list of suggestions
-    class: 'bg-white text-lg text-gray-900 rounded-lg py-4 px-4 space-y-2',
+    class: 'bg-white text-lg text-gray-900 rounded-lg py-4 px-4 space-y-2 absolute',
     maxResults: 10,
   },
   threshold: 3
