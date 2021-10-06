@@ -4,6 +4,10 @@ let fullCatalog = imdb250Movies.items.concat(imdb250TV.items);
 //global for tracking keypresses 
 let timeoutID;
 
+// .autoComplete_wrapper > ul > li[aria-selected="true"] {
+// background-color: rgba(255, 122, 122, 0.15);
+// }
+
 //creates the new autocomplete form
 const autoCompleteJS = new autoComplete({
   selector: "#search",
@@ -16,9 +20,18 @@ const autoCompleteJS = new autoComplete({
     cache: true,
     keys: ['title']
   },
+  //styling for list elements
   resultItem: {
-    highlight: true
+    highlight: true,
+    element: (item, data) =>{
+      let year = data.value.year ? data.value.year : data.value.Year;
+      item.classList = 'flex flex-row justify-between hover:bg-indigo-200 rounded px-1 items-baseline'
+      item.innerHTML =`
+      <p>${data.match}</p><p class='text-right text-sm text-gray-400'>${year}</p>`
+      // console.log(data.value.year)
+    }
   },
+  //interations and events here
   events: {
     input: {
       selection: (event) => {
@@ -72,8 +85,9 @@ const autoCompleteJS = new autoComplete({
     // add styling to the list of suggestions
     class: 'bg-white text-lg text-gray-900 rounded-lg py-4 px-4 space-y-2 absolute',
     maxResults: 10,
+    tabSelect: true,
   },
-  threshold: 3
+  threshold: 3,
 });
 
 //checks that there are enough chars for a search.
