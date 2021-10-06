@@ -38,7 +38,7 @@ function handleForm(event) {
   storageArray.push(searchBar.value);
   console.log(storageArray);
   localStorage.setItem("recentMovieSearches", JSON.stringify(storageArray));
-  makeRecentSearches();
+  //makeRecentSearches();
 }
 form.addEventListener("submit", handleForm);
 
@@ -53,9 +53,9 @@ function makeRecentSearches() {
   });
 }
 
-makeRecentSearches();
+//makeRecentSearches();
 let clearButton = document.querySelector("#clearSearch")
-clearButton.addEventListener("click", clearClick);
+//clearButton.addEventListener("click", clearClick);
 function clearClick(){
     localStorage.clear();
     document.getElementById("recent-searches").innerHTML = "";
