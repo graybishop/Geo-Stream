@@ -30,10 +30,14 @@
                     watch!</h1>
                 <form id="form" class="flex space-x-4 pb-2 px-6 w-full justify-center flex-row" autocomplete="off">
                     <!-- div holds the search bar -->
-                    <div class="flex-1 w-96" spellcheck="true">
+                    <div class="flex-1 w-96 relative" spellcheck="true">
                         <input id="search" type='search'
                             class="w-full text-lg py-4 px-4 rounded-lg shadow-md text-gray-900 flex-1"
                             spellcheck="true">
+                        <div class="opacity-0 absolute inset-y-0 right-4 flex items-center animate-spin transition-all">
+                        <!-- <img src="https://via.placeholder.com/40"> -->
+                        <div class="rounded-full border-8 border-pink-200 w-12 h-12" style="border-top-color: rgba(219, 39, 119, var(--tw-border-opacity));"></div>
+                        </div>
                     </div>
                     <!-- end of search bar div -->
                     <button type="submit"
