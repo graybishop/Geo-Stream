@@ -137,6 +137,28 @@ function getMovieId(event) {
     });
 }
 
+
+/*
+Popular section posters version of getMovieID. When a poster is clicked, this function is run to prompt the rest of the script.
+*/
+function getMovieIdPosters(title) {
+  var movieIdLookupUrl =
+    "http://www.omdbapi.com/?apikey=" + omdbApiKey + "&t=" + title;
+  fetch(movieIdLookupUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      obj.title = data.Title;
+      obj.year = data.Year;
+      obj.plot = data.Plot;
+      console.log(data.imdbID);
+      Id = data.imdbID;
+      varifyId(Id);
+    });
+}
+
 // This uses the IMDB id to find the moviedb id.
 // Then using the moviedb id it will varify if it is a "movie", "tv show", or "tv season".
 // Then it will change the entertainment type and call the get streaming services function

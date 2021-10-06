@@ -68,36 +68,43 @@
                             Sci-fi</h2>
                     </div>
                 </div>
+                <div class="genres flex flex-col items-center justify-center space-x-2 flex-wrap space-y-2">
+                    <p class="pb-2 text-xl text-pink-600">Or pick the Most Popular entertainment:</p>
+                    <div class='flex flex-wrap pb-6 justify-center gap-3' id='popular-items'>
+                    </div>
+                </div>
+
             </div>
+        </div>
+        <!--genres will need onclick even from JS-->
+
+        <div class=' bg-pink-600 container text-white mx-auto p-4 rounded-sm flex flex-col items-center'>
+            <h1 class="text-gray-900 font-bold">Recent Searches</h1>
+            <ul class="text-gray-900 font-bold" id='recent-searches'>
+
+            </ul>
+            <button id="clearSearch"
+                class="cursor-pointer py-2 px-4 bg-gray-900 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600">Clear
+                Recent Searches</button>
+        </div>
+        <br>
+        <!-- container for result cards -->
+        <div id='results-container'
+            class='container bg-pink-600 text-white font-bold mx-auto p-4 rounded-sm flex flex-col flex justify-center gap-4'>
 
         </div>
-    </div>
-    <!--genres will need onclick even from JS-->
-
-    <div class=' bg-pink-600 container text-white mx-auto p-4 rounded-sm flex flex-col items-center'>
-        <h1 class="text-gray-900 font-bold">Recent Searches</h1>
-        <ul class="text-gray-900 font-bold" id='recent-searches'>
-
-        </ul>
-        <button id="clearSearch"
-            class="cursor-pointer py-2 px-4 bg-gray-900 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600">Clear
-            Recent Searches</button>
-    </div>
-    <br>
-    <!-- container for result cards -->
-    <div id='results-container'
-        class='container bg-pink-600 text-white font-bold mx-auto p-4 rounded-sm flex flex-col flex justify-center gap-4'>
-
-    </div>
-    <!-- scripts start here -->
-    <!-- autocomplete library -->
-    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
-    <!-- file that holds hardcoded suggestions -->
-    <script src="imdb-hard-list.js"></script>
-    <!-- main script file. might be worth it to split at some point -->
-    <script src="script.js"></script>
-    <!-- autocomplete file with custom configuration and api suggestion call. -->
-    <script src="autocomplete-script.js"></script>
+        <!-- scripts start here -->
+        <!-- autocomplete library -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
+        <!-- file that holds hardcoded suggestions -->
+        <script src="imdb-hard-list.js"></script>
+        <!-- main script file. might be worth it to split at some point -->
+        <script src="script.js"></script>
+        <!-- autocomplete file with custom configuration and api suggestion call. -->
+        <script src="autocomplete-script.js"></script>
+        <!-- script for creating most popular posters -->
+        <script src="most-popular.js"></script>
 
 </body>
 
