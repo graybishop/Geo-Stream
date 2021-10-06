@@ -103,7 +103,7 @@ const renderMovieCard = ({title, year, plot, services}) => {
   yearEl.classList.add('font-bold', 'text-gray-500')
 
   cardTextHolderEl.classList.add('flex-1', 'pr-4')
-  servicesEl.classList.add('font-bold', 'text-red-500', 'flex', 'flex-col', 'justify-end', 'w-40')
+  servicesEl.classList.add('font-bold', 'text-gray-700', 'flex', 'flex-col', 'justify-end', 'w-40')
 
   //adds result to top of list
   document.querySelector("#results-container").prepend(cardEl);
