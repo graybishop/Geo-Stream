@@ -39,6 +39,7 @@ const autoCompleteJS = new autoComplete({
       },
       keyup: () => {
         //shows and hides the loading icon
+        searchNoResultsToolTip.hide()
         if (autoCompleteJS.input.value.length) {
           document.querySelector('#auto-complete-loading-icon').classList.remove('opacity-0');
         } else {
@@ -54,7 +55,6 @@ const autoCompleteJS = new autoComplete({
           clearTimeout(timeoutID);
           timeoutID = setTimeout(() => {
             if (checkInputSize(autoCompleteJS.input.value.trim())) {
-              console.log(`we are go an API call is runing`);
               goFindSomeResults(autoCompleteJS.input.value.trim());
             }
           }, 3000);
@@ -94,7 +94,6 @@ const goFindSomeResults = async (searchText) => {
     .then(response => response.json())
     .then(data => {
       updateSuggestions(data.Search);
-      console.log(data.Search);
     });
 };
 
@@ -106,6 +105,40 @@ const updateSuggestions = (arr) => {
       cache: true,
       keys: ['Title']
     };
+  } else {
+    console.log(`there's nothing we can add to the search suggestions`)
+    searchNoResultsToolTip.show()
   }
   autoCompleteJS.start();
 };
+
+let searchNoResultsToolTip = tippy(document.querySelector('#search'), {
+  content: `<h2 class='text-yellow-400 text-2xl border-b border-solid border-yellow-300 mb-2'>No Search Results</h2><p class='text-yellow-400 text-xl'>We can't find anything that matches your search 😞. Try again with a <span class='font-semibold'>new term.</span></p>`,
+  allowHTML: true,
+  // trigger for testing/styling
+  // trigger: 'click',
+  trigger: 'manual',
+  theme: 'dark-warning',
+  maxWidth: 400,
+  placement: 'top-start',
+  arrow: false,
+  animation: 'shift-away-extreme',
+  inertia: true,
+})
+
+const sampleDatadotSearch = [
+  {
+      "Title": "Red Rum",
+      "Year": "2000",
+      "imdbID": "tt0237643",
+      "Type": "movie",
+      "Poster": "N/A"
+  },
+  {
+      "Title": "The Red Rum Diaries",
+      "Year": "2016",
+      "imdbID": "tt7283336",
+      "Type": "series",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BM2Q3OTM5YmUtZmI1OS00Y2I0LTg2NmQtNWFiOTY3OWRmYmYyXkEyXkFqcGdeQXVyOTM2ODgzNw@@._V1_SX300.jpg"
+  }
+]
