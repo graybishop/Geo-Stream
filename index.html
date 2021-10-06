@@ -15,13 +15,12 @@
 
 <body class="bg-gray-900">
     <!-- the header section -->
+
     <header class="head bg-grey-900 text-white flex w-screen mx-auto p-4 justify-between items-baseline">
         <h1 class="font-semibold text-2xl text-indigo-300">GeoStream</h1>
-
     </header>
 
     <!--this is the main div for the text area, search button, and genres-->
-
     <div class="relative w-screen text-white flex flex-col items-center overflow-hidden">
         <img src="zilla.webp" alt="" class="absolute z-0 filter blur-sm w-full h-full object-cover">
         <div class="bg-black bg-opacity-75 relative w-full flex flex-col items-center">
@@ -48,7 +47,7 @@
                     class='text-lg bg-blue-500 rounded hover:bg-blue-700 hover:text-white ring-2 font-semibold px-4'>Search</button> -->
                 </form>
                 <div class="genres flex flex-col items-center justify-center space-x-2 flex-wrap space-y-2">
-                    <!-- <p class="pb-2 text-xl text-pink-600">Or pick from your favorite genre!</p>-->
+                   <!-- <p class="pb-2 text-xl text-pink-600">Or pick from your favorite genre!</p>-->
                     <div class='flex flex-wrap pb-6 justify-center gap-3'>
                         <!--<h2
                             class="cursor-pointer py-2 px-4 bg-pink-600 text-white font-semibold rounded-lg shadow-md hover:bg-pink-400">
@@ -69,17 +68,17 @@
                     </div>
                 </div>
                 <div class="genres flex flex-col items-center justify-center space-x-2 flex-wrap space-y-2">
-                    <p class="rounded-lg pb-2 text-3xl text-indigo-300 font-bold">Or pick
-                        the Most Popular entertainment: </p>
-                    <div class='flex flex-wrap pb-6 justify-center gap-3' id='popular-items'>
+                    <p class="rounded-lg shadow-md bg-gray-900 pb-2 text-xl text-pink-600 font-semibold">Or pick the Most Popular entertainment: </p>
+                    <div class='flex flex-wrap pb-6 justify-center gap-3 cursor-pointer' id='popular-items'>
+
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
-    <!--genres will need onclick even from JS-->
+        <!--genres will need onclick even from JS-->
 
-    <!--<div class=' bg-gray-900 container text-white mx-auto p-4 rounded-sm flex flex-col items-center'>
+        <!--<div class=' bg-gray-900 container text-white mx-auto p-4 rounded-sm flex flex-col items-center'>
             <h1 class="text-pink-600 text-lg font-bold">Recent Searches</h1>
             <ul class="text-gray-900 font-bold" id='recent-searches'>
 
@@ -90,22 +89,23 @@
                 Recent Searches</button>
         </div>
         <br>-->
-    <!-- container for result cards -->
-    <div id='results-container'
-        class='container bg-gray-900 text-white font-bold mx-auto p-4 rounded-sm flex flex-col flex justify-center gap-4'>
+        <!-- container for result cards -->
+        <div id='results-container'
+            class='container bg-gray-900 text-white font-bold mx-auto p-4 rounded-sm flex flex-col flex justify-center gap-4'>
 
-    </div>
-    <!-- scripts start here -->
-    <!-- autocomplete library -->
-    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
-    <!-- file that holds hardcoded suggestions -->
-    <script src="imdb-hard-list.js"></script>
-    <!-- main script file. might be worth it to split at some point -->
-    <script src="script.js"></script>
-    <!-- autocomplete file with custom configuration and api suggestion call. -->
-    <script src="autocomplete-script.js"></script>
-    <!-- script for creating most popular posters -->
-    <script src="most-popular.js"></script>
+        </div>
+        <!-- scripts start here -->
+        <!-- autocomplete library -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
+        <!-- file that holds hardcoded suggestions -->
+        <script src="imdb-hard-list.js"></script>
+        <!-- main script file. might be worth it to split at some point -->
+        <script src="script.js"></script>
+        <!-- autocomplete file with custom configuration and api suggestion call. -->
+        <script src="autocomplete-script.js"></script>
+        <!-- script for creating most popular posters -->
+        <script src="most-popular.js"></script>
 
 </body>
 
