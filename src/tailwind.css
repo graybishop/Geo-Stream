@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* $ tailwindcss -i ./src/tailwind.css -o tailwind.css  */
+/* $ npx tailwindcss -i ./src/tailwind.css -o tailwind.css  */
 
-/* @layer components {
-  .btn {
-    @apply px-4 py-2 bg-blue-600 text-white rounded;
+@layer components {
+  
+  .tippy-box[data-theme~='dark-warning'] {
+    @apply bg-gray-800 bg-opacity-90 p-2 rounded shadow-md ring-4 ring-yellow-300 ring-opacity-75;
   }
-} */
+  .tippy-box[data-theme~='dark-tip'] {
+    @apply bg-gray-800 bg-opacity-90 p-2 rounded shadow-md ring-4 ring-indigo-300 ring-opacity-75;
+  }
+
+  ul > li[aria-selected="true"]{
+    @apply bg-indigo-200
+  }
+}

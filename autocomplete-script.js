@@ -1,7 +1,7 @@
-//dirty way to make origional suggestions. might want to drop entirely in favor of waiting on api results
+//dirty way to make original suggestions. might want to drop entirely in favor of waiting on api results
 let fullCatalog = imdb250Movies.items.concat(imdb250TV.items);
 
-//global for tracking keypresses 
+//global for tracking keypress 
 let timeoutID;
 
 //creates the new autocomplete form
@@ -16,25 +16,44 @@ const autoCompleteJS = new autoComplete({
     cache: true,
     keys: ['title']
   },
+  //styling for list elements
   resultItem: {
-    highlight: true
+    highlight: true,
+    element: (item, data) =>{
+      let year = data.value.year ? data.value.year : data.value.Year;
+      item.classList = 'flex flex-row justify-between hover:bg-indigo-200 rounded px-1 items-baseline'
+      item.innerHTML =`
+      <p>${data.match}</p><p class='text-right text-sm text-gray-400'>${year}</p>`
+      // console.log(data.value.year)
+    }
   },
+  //interactions and events here
   events: {
     input: {
       selection: (event) => {
         const selection = event.detail.selection.value;
-        if (selection.title != undefined) {
-          autoCompleteJS.input.value = selection.title;
-        } else {
-          //needed because omdb uses capital property names
-          autoCompleteJS.input.value = selection.Title;
-        }
+        autoCompleteJS.input.value = selection.title ? selection.title : selection.Title
+
+        //submits form when a selection is made.
+        document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0')
+        document.querySelector("#form").requestSubmit()
 
       },
       focus: () => {
-        if (autoCompleteJS.input.value.length) autoCompleteJS.start();
+        if (autoCompleteJS.input.value.length) {
+          document.querySelector('#auto-complete-loading-icon').classList.remove('opacity-0');
+          autoCompleteJS.start()
+        };
       },
       keyup: () => {
+        //shows and hides the loading icon
+        searchNoResultsToolTip.hide()
+        if (autoCompleteJS.input.value.length) {
+          document.querySelector('#auto-complete-loading-icon').classList.remove('opacity-0');
+        } else {
+          document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0');
+        }
+
         //I don't think this if statement is needed (the executed code is the same regardless of the condition.)
         if (!timeoutID) {
           timeoutID = setTimeout(() => {
@@ -44,21 +63,26 @@ const autoCompleteJS = new autoComplete({
           clearTimeout(timeoutID);
           timeoutID = setTimeout(() => {
             if (checkInputSize(autoCompleteJS.input.value.trim())) {
-              console.log(`we are go an API call is runing`);
               goFindSomeResults(autoCompleteJS.input.value.trim());
             }
           }, 3000);
         }
 
+      },
+      blur: () => {
+        //when the search bar loses focus close the search list and hide the loading icon
+        document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0');
+        autoCompleteJS.close();
       }
     }
   },
   resultsList: {
     // add styling to the list of suggestions
-    class: 'bg-white text-lg text-gray-900 rounded-lg py-4 px-4 space-y-2',
+    class: 'bg-white text-lg text-gray-900 rounded-lg py-4 px-4 space-y-2 absolute',
     maxResults: 10,
+    tabSelect: true,
   },
-  threshold: 3
+  threshold: 3,
 });
 
 //checks that there are enough chars for a search.
@@ -79,7 +103,6 @@ const goFindSomeResults = async (searchText) => {
     .then(response => response.json())
     .then(data => {
       updateSuggestions(data.Search);
-      console.log(data.Search);
     });
 };
 
@@ -91,6 +114,40 @@ const updateSuggestions = (arr) => {
       cache: true,
       keys: ['Title']
     };
+  } else {
+    console.log(`there's nothing we can add to the search suggestions`)
+    searchNoResultsToolTip.show()
   }
   autoCompleteJS.start();
 };
+
+let searchNoResultsToolTip = tippy(document.querySelector('#search'), {
+  content: `<h2 class='text-yellow-400 text-2xl border-b border-solid border-yellow-300 mb-2'>No Search Results</h2><p class='text-yellow-400 text-xl'>We can't find anything that matches your search 😞. Try again with a <span class='font-semibold'>new term.</span></p>`,
+  allowHTML: true,
+  // trigger for testing/styling
+  // trigger: 'click',
+  trigger: 'manual',
+  theme: 'dark-warning',
+  maxWidth: 400,
+  placement: 'top-start',
+  arrow: false,
+  animation: 'shift-away-extreme',
+  inertia: true,
+})
+
+const sampleDatadotSearch = [
+  {
+      "Title": "Red Rum",
+      "Year": "2000",
+      "imdbID": "tt0237643",
+      "Type": "movie",
+      "Poster": "N/A"
+  },
+  {
+      "Title": "The Red Rum Diaries",
+      "Year": "2016",
+      "imdbID": "tt7283336",
+      "Type": "series",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BM2Q3OTM5YmUtZmI1OS00Y2I0LTg2NmQtNWFiOTY3OWRmYmYyXkEyXkFqcGdeQXVyOTM2ODgzNw@@._V1_SX300.jpg"
+  }
+]
