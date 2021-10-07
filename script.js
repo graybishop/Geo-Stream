@@ -41,15 +41,27 @@ var settingsPreferences = {
   },
 };
 
-var imdbUrl =
-  "https://www.amazon.com/gp/video/storefront/ref=IMDBTV_ACQ_CRO_OTH_MLP_01?contentType=subscription&contentId=freewithads&benefitId=freewithads";
+
+var imdbUrl = "https://www.amazon.com/gp/video/storefront/ref=IMDBTV_ACQ_CRO_OTH_MLP_01?contentType=subscription&contentId=freewithads&benefitId=freewithads";
 var huluUrl = "https://www.hulu.com/hub/home";
 var fuboTvUrl = "https://www.fubo.tv/welcome";
 var netflixUrl = "https://www.netflix.com/";
-var appleTvPlusUrl =
-  "https://tv.apple.com/?ign-itscg=10000&ign-itsct=atv-tv_op-nav_wch-ctr-210111";
-var YoutubeTvUrl =
-  "https://tv.youtube.com/welcome/?utm_servlet=prod&zipcode=33919";
+var appleTvPlusUrl = "https://tv.apple.com/?ign-itscg=10000&ign-itsct=atv-tv_op-nav_wch-ctr-210111";
+var YoutubeTvUrl = "https://tv.youtube.com/welcome/?utm_servlet=prod&zipcode=33919";
+var HBOMaxUrl = "https://www.hbomax.com/";
+var HBONowUrl = "https://play.hbonow.com/page/urn:hbo:page:home";
+var DirecTvUrl = "https://www.directv.com/stream/";
+var disneyPlusUrl = "https://www.disneyplus.com/";
+var tntUrl = "https://www.tntdrama.com/";
+var tbsUrl = "https://www.tbs.com/";
+var truTvUrl = "https://www.trutv.com/";
+var paramountPlusUrl = "https://www.paramountplus.com/";
+var cbsUrl = "https://www.cbs.com/";
+var slingTvUrl = "https://www.sling.com/";
+var spectrumOnDemandUrl = "https://ondemand.spectrum.net/";
+var peacokPremiumUrl = "https://www.peacocktv.com/premium";
+var funimationNowUrl = "https://www.funimation.com/";
+var adultSwimUrl = "https://www.adultswim.com/";
 
 if (localStorage.getItem("settingsPreferences") == null) {
   settingsPreferences = {
@@ -339,7 +351,7 @@ function getMovieId(event) {
   var movieTitle = searchInput.value.trim();
   searchForm.reset();
   var movieIdLookupUrl =
-    "http://www.omdbapi.com/?apikey=" + omdbApiKey + "&t=" + movieTitle;
+    "https://www.omdbapi.com/?apikey=" + omdbApiKey + "&t=" + movieTitle;
   fetch(movieIdLookupUrl)
     .then(function (response) {
       return response.json();
@@ -360,7 +372,7 @@ Popular section posters version of getMovieID. When a poster is clicked, this fu
 */
 function getMovieIdPosters(title) {
   var movieIdLookupUrl =
-    "http://www.omdbapi.com/?apikey=" + omdbApiKey + "&t=" + title;
+    "https://www.omdbapi.com/?apikey=" + omdbApiKey + "&t=" + title;
   fetch(movieIdLookupUrl)
     .then(function (response) {
       return response.json();
@@ -416,6 +428,8 @@ function varifyId(idToVarify) {
     });
 }
 
+function getStreamingServicesUrl() {}
+
 // This will use the movieDB id and the entertainment
 // type variables to return the services providers or will prompt the user there are none.
 function getStreamingServicesMovTv(imdbId, entertainmentType) {
@@ -434,6 +448,8 @@ function getStreamingServicesMovTv(imdbId, entertainmentType) {
       // console.log(Object.keys(data.results.US));
       // console.log(Object.keys(data.results.US).includes("flatrate"));
       console.log(Object.keys(data.results));
+      services = [];
+      obj.services = [];
       if (Object.keys(data.results).length == 0) {
         obj.services[0] = { name: "No streaming services" };
       } else if (Object.keys(data.results.US).includes("flatrate")) {
@@ -457,6 +473,51 @@ function getStreamingServicesMovTv(imdbId, entertainmentType) {
               break;
             case "YoutubeTV":
               obj.services[j] = { name: services[j], url: YoutubeTvUrl };
+              break;
+            case "HBO Max":
+              obj.services[j] = { name: services[j], url: HBOMaxUrl };
+              break;
+            case "HBO Now":
+              obj.services[j] = { name: services[j], url: HBONowUrl };
+              break;
+            case "DIRECTV":
+              obj.services[j] = { name: services[j], url: DirecTvUrl };
+              break;
+            case "Disney Plus":
+                obj.services[j] = { name: services[j], url: disneyPlusUrl };
+                break;
+            case "TNT":
+              obj.services[j] = { name: services[j], url: tntUrl };
+              break;
+            case "TBS":
+              obj.services[j] = { name: services[j], url: tbsUrl };
+              break;
+            case "tru TV":
+              obj.services[j] = { name: services[j], url: truTvUrl };
+              break;
+            case "Paramount+ Amazon Channel":
+                obj.services[j] = { name: services[j], url: paramountPlusUrl };
+                break;
+            case "CBS":
+                obj.services[j] = { name: services[j], url: cbsUrl };
+                break; 
+            case "Sling TV":
+                obj.services[j] = { name: services[j], url: slingTvUrl };
+                break; 
+            case "Spectrum On Demand":
+                obj.services[j] = { name: services[j], url: spectrumOnDemandUrl };
+                break; 
+            case "Peacock Premium":
+                obj.services[j] = { name: services[j], url: peacokPremiumUrl };
+                break; 
+            case "Funimation Now":
+                obj.services[j] = { name: services[j], url: funimationNowUrl };
+                break; 
+            case "Adult Swim":
+                obj.services[j] = { name: services[j], url: adultSwimUrl };
+                break; 
+            default:
+              obj.services[j] = { name: "Add more streaming services!!" };
               break;
           }
         }
@@ -496,6 +557,8 @@ function getStreamingServicesTvSeason(
       // console.log(Object.keys(data.results.US));
       // console.log(Object.keys(data.results.US).includes("flatrate"));
       console.log(Object.keys(data.results));
+      services = [];
+      obj.services = [];
       if (Object.keys(data.results).length == 0) {
         obj.services[0] = { name: "No streaming services" };
       } else if (Object.keys(data.results.US).includes("flatrate")) {
@@ -519,6 +582,51 @@ function getStreamingServicesTvSeason(
               break;
             case "YoutubeTV":
               obj.services[j] = { name: services[j], url: YoutubeTvUrl };
+              break;
+            case "HBO Max":
+              obj.services[j] = { name: services[j], url: HBOMaxUrl };
+              break;
+            case "HBO Now":
+              obj.services[j] = { name: services[j], url: HBONowUrl };
+              break;
+            case "DIRECTV":
+              obj.services[j] = { name: services[j], url: DirecTvUrl };
+              break;
+            case "Disney Plus":
+                obj.services[j] = { name: services[j], url: disneyPlusUrl };
+                break;
+            case "TNT":
+              obj.services[j] = { name: services[j], url: tntUrl };
+              break;
+            case "TBS":
+              obj.services[j] = { name: services[j], url: tbsUrl };
+              break;
+            case "tru TV":
+              obj.services[j] = { name: services[j], url: truTvUrl };
+              break;
+            case "Paramount+ Amazon Channel":
+                obj.services[j] = { name: services[j], url: paramountPlusUrl };
+                break;
+            case "CBS":
+                obj.services[j] = { name: services[j], url: cbsUrl };
+                break; 
+            case "Sling TV":
+                obj.services[j] = { name: services[j], url: slingTvUrl };
+                break; 
+            case "Spectrum On Demand":
+                obj.services[j] = { name: services[j], url: spectrumOnDemandUrl };
+                break; 
+            case "Peacock Premium":
+                obj.services[j] = { name: services[j], url: peacokPremiumUrl };
+                break; 
+            case "Funimation Now":
+                obj.services[j] = { name: services[j], url: funimationNowUrl };
+                break; 
+            case "Adult Swim":
+                obj.services[j] = { name: services[j], url: adultSwimUrl };
+                break; 
+            default:
+              obj.services[j] = { name: "Add more streaming services!!" };
               break;
           }
         }
