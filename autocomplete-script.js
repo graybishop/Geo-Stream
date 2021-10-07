@@ -1,12 +1,8 @@
-//dirty way to make origional suggestions. might want to drop entirely in favor of waiting on api results
+//dirty way to make original suggestions. might want to drop entirely in favor of waiting on api results
 let fullCatalog = imdb250Movies.items.concat(imdb250TV.items);
 
-//global for tracking keypresses 
+//global for tracking keypress 
 let timeoutID;
-
-// .autoComplete_wrapper > ul > li[aria-selected="true"] {
-// background-color: rgba(255, 122, 122, 0.15);
-// }
 
 //creates the new autocomplete form
 const autoCompleteJS = new autoComplete({
@@ -31,7 +27,7 @@ const autoCompleteJS = new autoComplete({
       // console.log(data.value.year)
     }
   },
-  //interations and events here
+  //interactions and events here
   events: {
     input: {
       selection: (event) => {
@@ -74,7 +70,7 @@ const autoCompleteJS = new autoComplete({
 
       },
       blur: () => {
-        //when the seachbar loses focus close the searchlist and hide the loading icon
+        //when the search bar loses focus close the search list and hide the loading icon
         document.querySelector('#auto-complete-loading-icon').classList.add('opacity-0');
         autoCompleteJS.close();
       }
