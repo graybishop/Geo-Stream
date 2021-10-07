@@ -107,9 +107,6 @@ function SettingsAlert() {
       "w-2/4 h-auto overflow-hidden bg-gray-900 text-indigo-300 shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center visible"
     );
     settingsModalOverlay.setAttribute("class", "visible");
-    // close settings modal
-    document.getElementById("settings-modal-close").innerHTML =
-      "<button onclick='Alert.ok()'>Close</button>";
   };
 
   this.ok = function () {
