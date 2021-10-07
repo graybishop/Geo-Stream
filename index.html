@@ -23,7 +23,7 @@
 <body class="bg-gray-900">
     <!-- the header section -->
 
-    <div id='modal-blackout' class="bg-black bg-opacity-75 absolute w-full h-screen z-40 hidden backdrop-filter backdrop-blur"></div>
+    <div id='modal-blackout' class="bg-black bg-opacity-75 absolute w-full h-full z-40 hidden backdrop-filter backdrop-blur"></div>
     <header class="head bg-grey-900 text-white flex w-full mx-auto p-4 justify-between items-baseline">
         <h1 class="font-semibold text-2xl text-indigo-300">GeoStream</h1>
         <nav class="nav-1 h-full text-xl flex">
@@ -36,22 +36,22 @@
     <!--- Settings Modal -->
 
     <div id="settings-modal-overlay" class="flex justify-center">
-        <div id="settings-modal-popup" class="container-sm h-auto overflow-hidden shadow-lg rounded-lg absolute top-10 z-50 hidden">
-            <div id= "settings-modal-box" class="p-4 bg-gray-900 bg-opacity-95 p-2 rounded shadow-md flex flex-col">
-                <h1 class='text-indigo-400 text-2xl border-b border-solid border-indigo-300 mb-2 text-left font-semibold'>Preferences:</h1>
+        <div id="settings-modal-popup" class="w-11/12 md:w-5/12 overflow-hidden shadow-lg rounded-lg absolute top-10 z-50 hidden">
+            <div id= "settings-modal-box" class="p-6 bg-gray-900 bg-opacity-95 p-2 rounded shadow-md flex flex-col">
+                <h1 class='text-indigo-400 text-2xl border-b border-solid border-indigo-300 mb-2 text-left font-semibold'>Your Settings</h1>
                 <section>
-
-                    <div class="font-bold text-indigo-300 flex flex-col justify-end p-2">
-                        <button onclick="streamingPreferenceOn(this)" id="IMDBTVAmazonChannel" class="text-left w-max"><i class="far fa-square"></i> IMDB TV Amazon Channel</button>
-                        <button onclick="streamingPreferenceOn(this)" id="Hulu" class="text-left w-max"><i class="far fa-square"></i> Hulu</button>
-                        <button onclick="streamingPreferenceOn(this)" id="fuboTV" class="text-left w-max"><i class="far fa-square"></i> fuboTV</button>
-                        <button onclick="streamingPreferenceOn(this)" id="Netflix" class="text-left w-max"><i class="far fa-square"></i> Netflix</button>
-                        <button onclick="streamingPreferenceOn(this)" id="AppleTVPlus" class="text-left w-max"><i class="far fa-square"></i> Apple TV Plus</button>
-                        <button onclick="streamingPreferenceOn(this)" id="YoutubeTV" class="text-left w-max"><i class="far fa-square"></i> YoutubeTV</button>
+                    <p class="text-indigo-200">You can select from the streaming services below so we can tailor your searches and let you know what's playing.</p>
+                    <div class="font-bold text-indigo-300 flex flex-col p-2 text-xl items-start gap-2 pb-4">
+                        <button onclick="streamingPreferenceOn(this)" id="IMDBTVAmazonChannel" class="transform hover:-translate-y-1 transition-all text-left"><i class="far fa-square"></i> IMDB TV Amazon Channel</button>
+                        <button onclick="streamingPreferenceOn(this)" id="Hulu" class="transform hover:-translate-y-1 transition-all text-left"><i class="far fa-square"></i> Hulu</button>
+                        <button onclick="streamingPreferenceOn(this)" id="fuboTV" class="transform hover:-translate-y-1 transition-all text-left"><i class="far fa-square"></i> fuboTV</button>
+                        <button onclick="streamingPreferenceOn(this)" id="Netflix" class="transform hover:-translate-y-1 transition-all text-left"><i class="far fa-square"></i> Netflix</button>
+                        <button onclick="streamingPreferenceOn(this)" id="AppleTVPlus" class="transform hover:-translate-y-1 transition-all text-left"><i class="far fa-square"></i> Apple TV Plus</button>
+                        <button onclick="streamingPreferenceOn(this)" id="YoutubeTV" class="transform hover:-translate-y-1 transition-all text-left"><i class="far fa-square"></i> YoutubeTV</button>
                     </div>
                 </section>
 
-                <div id="settings-modal-close" class="pb-2 self-center"><button onclick='Alert.ok()' class="py-2 px-4 bg-blue-900 text-indigo-300 font-semibold rounded-lg shadow-md hover:bg-blue-600 transform hover:-translate-y-1 transition-all ">Close</button></div>
+                <div id="settings-modal-close" class="pb-2 self-center"><button onclick='Alert.ok()' class="py-2 px-4 bg-blue-900 text-indigo-300 font-semibold rounded-lg shadow-md hover:bg-blue-600 transform hover:-translate-y-1 transition-all ">Close Your Settings</button></div>
             </div>
         </div>
     </div>
