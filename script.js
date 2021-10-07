@@ -99,18 +99,20 @@ function SettingsAlert() {
   this.render = function () {
     // show settings modal
     let settingsModalPopup = document.getElementById("settings-modal-popup");
-    let settingsModalOverlay = document.getElementById("settings-modal-overlay");
+    let blackoutEl = document.getElementById("modal-blackout");
     settingsModalPopup.classList.add("visible");
     settingsModalPopup.classList.remove("hidden");
-    settingsModalOverlay.setAttribute("class", "visible");
+    blackoutEl.classList.add("visible");
+    blackoutEl.classList.remove("hidden");
   };
 
   this.ok = function () {
     let settingsModalPopup = document.getElementById("settings-modal-popup");
-    let settingsModalOverlay = document.getElementById("settings-modal-overlay");
+    let blackoutEl = document.getElementById("modal-blackout");
     settingsModalPopup.classList.add("hidden");
     settingsModalPopup.classList.remove("visible");
-    settingsModalOverlay.setAttribute("class", "hidden");
+    blackoutEl.classList.add("hidden");
+    blackoutEl.classList.remove("visible");
   };
 }
 

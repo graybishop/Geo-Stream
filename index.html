@@ -34,12 +34,12 @@
 
     <!--- Settings Modal -->
 
-    <div id="settings-modal-overlay">
-        <div id="settings-modal-popup" class="w-2/4 h-auto overflow-hidden shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px hidden">
-            <div id= "settings-modal-box" class="p-4 bg-gray-900 bg-opacity-90 p-2 rounded shadow-md">
-                <h1 class='text-indigo-400 text-2xl border-b border-solid border-indigo-300 mb-2 text-left'>Preferences:</h1>
+    <div id="settings-modal-overlay" class="relative flex justify-center">
+        <div id='modal-blackout' class="bg-black bg-opacity-60 absolute w-full h-screen z-40 hidden filter blur"></div>
+        <div id="settings-modal-popup" class="container-sm h-auto overflow-hidden shadow-lg rounded-lg absolute top-10 z-50 hidden">
+            <div id= "settings-modal-box" class="p-4 bg-gray-900 bg-opacity-95 p-2 rounded shadow-md flex flex-col">
+                <h1 class='text-indigo-400 text-2xl border-b border-solid border-indigo-300 mb-2 text-left font-semibold'>Preferences:</h1>
                 <section>
-                    <h1>Streaming Services:</h1>
 
                     <div class="font-bold text-indigo-300 flex flex-col justify-end p-2">
                         <button onclick="streamingPreferenceOn(this)" id="IMDBTVAmazonChannel" class="text-left w-max"><i class="far fa-square"></i> IMDB TV Amazon Channel</button>
@@ -51,7 +51,7 @@
                     </div>
                 </section>
 
-                <div id="settings-modal-close" class="pb-2"><button onclick='Alert.ok()' class="py-2 px-4 bg-blue-900 text-indigo-300 font-semibold rounded-lg shadow-md hover:bg-blue-600 transform hover:-translate-y-1 transition-all">Close</button></div>
+                <div id="settings-modal-close" class="pb-2 self-center"><button onclick='Alert.ok()' class="py-2 px-4 bg-blue-900 text-indigo-300 font-semibold rounded-lg shadow-md hover:bg-blue-600 transform hover:-translate-y-1 transition-all ">Close</button></div>
             </div>
         </div>
     </div>
