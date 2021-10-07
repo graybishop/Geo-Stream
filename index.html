@@ -10,6 +10,10 @@
     <!-- stylesheet for autocomplete. Might be useless/not needed anymore -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/css/autoComplete.min.css">
+    <!-- stylesheet for fontawesome to include icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <title>GeoStream</title>
 </head>
 
@@ -23,8 +27,37 @@
                 <li class="hover:text-pink-300"><a href="#">services</a></li>
                 <li class="hover:text-pink-300"><a href="#">about</a></li>
             </ul>
+            <!-- settings modal gears button -->
+            <button onclick="Alert.render()" id="modal-settings-btn"><i class="fa-solid fa-gears"></i></button>
         </nav>
     </header>
+
+    <!--- Settings Modal -->
+
+    <div id="settings-modal-overlay">
+        <div id= "settings-modal-popup" class="w-2/4 h-auto overflow-hidden bg-gray-600 shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center hidden">
+            <div id= "settings-modal-box">
+                <h1>Preferences:</h1>
+                <section>
+                    <h1>Light & Dark mode:</h1>
+                    <button class="text-red-500 p-2">Can replace this button with a light dark toggle</button>
+                </section>
+                <section>
+                    <h1>Streaming Services:</h1>
+                    <div class="font-bold text-red-500 flex flex-col justify-end p-2">
+                        <button onclick="streamingPreferenceOn(this)" id="IMDBTVAmazonChannel" class="text-left w-max"><i class="far fa-square"></i> IMDB TV Amazon Channel</button>
+                        <button onclick="streamingPreferenceOn(this)" id="Hulu" class="text-left w-max"><i class="far fa-square"></i> Hulu</button>
+                        <button onclick="streamingPreferenceOn(this)" id="fuboTV" class="text-left w-max"><i class="far fa-square"></i> fuboTV</button>
+                        <button onclick="streamingPreferenceOn(this)" id="Netflix" class="text-left w-max"><i class="far fa-square"></i> Netflix</button>
+                        <button onclick="streamingPreferenceOn(this)" id="AppleTVPlus" class="text-left w-max"><i class="far fa-square"></i> Apple TV Plus</button>
+                        <button onclick="streamingPreferenceOn(this)" id="YoutubeTV" class="text-left w-max"><i class="far fa-square"></i> YoutubeTV</button>
+                    </div>
+                </section>
+                
+                <div id= "settings-modal-close"></div>
+            </div>
+        </div>
+    </div>
 
     <!--this is the main div for the text area, search button, and genres-->
 

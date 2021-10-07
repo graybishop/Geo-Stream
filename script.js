@@ -1,5 +1,12 @@
 var searchForm = document.querySelector("#form");
 var searchInput = document.querySelector("#search");
+var Alert = new SettingsAlert();
+var ImdbBtn = document.querySelector("#IMDB-TV-Amazon-Channel");
+var huluBtn = document.querySelector("#Hulu");
+var fuboTvBtn = document.querySelector("#fuboTV");
+var netflixBtn = document.querySelector("#Netflix");
+var appleTvPlusBtn = document.querySelector("#Apple-TV");
+var youtubeTvBtn = document.querySelector("#YoutubeTV");
 
 var obj = {
     title: "",
@@ -22,10 +29,121 @@ var entertainmentType2;
 var seasonNum;
 var services = [];
 
+var settingsPreferences = {
+    mode: "",
+    services: {IMDBTVAmazonChannel: false, Hulu: false, fuboTV: false, Netflix: false, AppleTVPlus: false, YoutubeTV: false}
+}
+
+if (localStorage.getItem("settingsPreferences") == null) {
+    settingsPreferences = {
+        mode: "",
+        services: {IMDBTVAmazonChannel: false, Hulu: false, fuboTV: false, Netflix: false, AppleTVPlus: false, YoutubeTV: false}
+    }
+} else {
+    settingsPreferences = JSON.parse(localStorage.getItem("settingsPreferences"));
+}
+
+
+
 let storageArray = [];
 
 let form = document.querySelector("#form");
 let searchBar = document.querySelector("#search");
+
+// This is the JS for the settings Modal
+if (localStorage.getItem("settingsPreferences") !== null) {
+    var tempSettingsPreferences = JSON.parse(localStorage.getItem("settingsPreferences"));
+    var servicesPreferences = tempSettingsPreferences.services;
+    console.log(servicesPreferences);
+    for (var i = 0; i < Object.keys(servicesPreferences).length; i++){
+        if (servicesPreferences[Object.keys(servicesPreferences)[i]] == true){
+            var button = document.querySelector("#" + Object.keys(servicesPreferences)[i] + "");
+            var tempText = button.textContent;
+            var tempId = button.id;
+            button.innerHTML = " ";
+            button.innerHTML = "<i class='fas fa-check-square'></i>" + tempText;
+            button.setAttribute( "onclick", "streamingPreferenceOff(this)");
+        }
+    }
+}
+
+function SettingsAlert(){
+    this.render = function(){
+        // show settings modal
+        var settingsModalPopup = document.getElementById('settings-modal-popup');
+        var settingsModalOverlay = document.getElementById('settings-modal-overlay');
+        settingsModalPopup.setAttribute("class", "w-2/4 h-auto overflow-hidden bg-gray-600 shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center visible");
+        settingsModalOverlay.setAttribute("class", "visible");
+        // close settings modal
+        document.getElementById("settings-modal-close").innerHTML = "<button onclick='Alert.ok()'>Close</button>";
+    }
+
+    this.ok = function(){
+        document.getElementById("settings-modal-popup").setAttribute("class", "w-2/4 h-auto overflow-hidden bg-gray-600 shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center invisible");
+        document.getElementById("settings-modal-overlay").setAttribute("class", "invisible");
+    }
+}
+
+function streamingPreferenceOn(button){
+    var tempText = button.textContent;
+    var tempId = button.id;
+    button.innerHTML = " ";
+    button.innerHTML = "<i class='fas fa-check-square'></i>" + tempText;
+    button.setAttribute( "onclick", "streamingPreferenceOff(this)");
+    switch(tempId){
+        case "IMDBTVAmazonChannel":
+        settingsPreferences.services.IMDBTVAmazonChannel = true;
+        break;
+        case "Hulu":
+        settingsPreferences.services.Hulu = true;
+        break;
+        case "fuboTV":
+        settingsPreferences.services.fuboTV = true;
+        break;
+        case "Netflix":
+        settingsPreferences.services.Netflix = true;
+        break;
+        case "AppleTVPlus":
+        settingsPreferences.services.AppleTVPlus = true;
+        break;
+        case "YoutubeTV":
+        settingsPreferences.services.YoutubeTV = true;
+        break;
+    }
+    
+    localStorage.setItem("settingsPreferences", JSON.stringify(settingsPreferences));
+    console.log(localStorage.getItem("settingsPreferences"));
+}
+
+function streamingPreferenceOff(button){
+    var tempText = button.textContent;
+    var tempId = button.id;
+    button.innerHTML = " ";
+    button.innerHTML = "<i class='far fa-square'></i>" + tempText;
+    button.setAttribute( "onclick", "streamingPreferenceOn(this)");
+    switch(tempId){
+        case "IMDBTVAmazonChannel":
+        settingsPreferences.services.IMDBTVAmazonChannel = false;
+        break;
+        case "Hulu":
+        settingsPreferences.services.Hulu = false;
+        break;
+        case "fuboTV":
+        settingsPreferences.services.fuboTV = false;
+        break;
+        case "Netflix":
+        settingsPreferences.services.Netflix = false;
+        break;
+        case "AppleTVPlus":
+        settingsPreferences.services.AppleTVPlus = false;
+        break;
+        case "YoutubeTV":
+        settingsPreferences.services.YoutubeTV = false;
+        break;
+    }
+    localStorage.setItem("settingsPreferences", JSON.stringify(settingsPreferences));
+    console.log(localStorage.getItem("settingsPreferences"));
+}
 
 // form.addEventListener()
 if (localStorage.getItem("recentMovieSearches") !== null) {
