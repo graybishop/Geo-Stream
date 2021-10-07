@@ -98,27 +98,19 @@ if (localStorage.getItem("settingsPreferences") !== null) {
 function SettingsAlert() {
   this.render = function () {
     // show settings modal
-    var settingsModalPopup = document.getElementById("settings-modal-popup");
-    var settingsModalOverlay = document.getElementById(
-      "settings-modal-overlay"
-    );
-    settingsModalPopup.setAttribute(
-      "class",
-      "w-2/4 h-auto overflow-hidden bg-gray-900 text-indigo-300 shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center visible"
-    );
+    let settingsModalPopup = document.getElementById("settings-modal-popup");
+    let settingsModalOverlay = document.getElementById("settings-modal-overlay");
+    settingsModalPopup.classList.add("visible");
+    settingsModalPopup.classList.remove("hidden");
     settingsModalOverlay.setAttribute("class", "visible");
   };
 
   this.ok = function () {
-    document
-      .getElementById("settings-modal-popup")
-      .setAttribute(
-        "class",
-        "w-2/4 h-auto overflow-hidden shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center invisible"
-      );
-    document
-      .getElementById("settings-modal-overlay")
-      .setAttribute("class", "invisible");
+    let settingsModalPopup = document.getElementById("settings-modal-popup");
+    let settingsModalOverlay = document.getElementById("settings-modal-overlay");
+    settingsModalPopup.classList.add("hidden");
+    settingsModalPopup.classList.remove("visible");
+    settingsModalOverlay.setAttribute("class", "hidden");
   };
 }
 
