@@ -122,7 +122,7 @@ const updateSuggestions = (arr) => {
 };
 
 let searchNoResultsToolTip = tippy(document.querySelector('#search'), {
-  content: `<h2 class='text-yellow-400 text-2xl border-b border-solid border-yellow-300 mb-2'>No Search Results</h2><p class='text-yellow-400 text-xl'>We can't find anything that matches your search 😞. Try again with a <span class='font-semibold'>new term.</span></p>`,
+  content: `<h2 class='text-yellow-400 text-2xl border-b border-solid border-yellow-300 mb-2'><i class="fas fa-exclamation-triangle"></i> No Search Results</h2><p class='text-yellow-400 text-xl'>We can't find anything that matches your search 😞. Try again with a <span class='font-semibold'>new term.</span></p>`,
   allowHTML: true,
   // trigger for testing/styling
   // trigger: 'click',
