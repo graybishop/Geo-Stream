@@ -1,6 +1,4 @@
 document.addEventListener('keydown', (event) => {
-    console.log(event)
-    console.log(event.key)
     searchKeyboardToolTip.hide();
     clearInterval(keyboardTip)
     if (`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.includes(event.key) && document.activeElement != search) {
