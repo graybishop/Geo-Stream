@@ -9,6 +9,9 @@
   .tippy-box[data-theme~='dark-warning'] {
     @apply bg-gray-800 bg-opacity-90 p-2 rounded shadow-md ring-4 ring-yellow-300 ring-opacity-75;
   }
+  .tippy-box[data-theme~='dark-tip'] {
+    @apply bg-gray-800 bg-opacity-90 p-2 rounded shadow-md ring-4 ring-indigo-300 ring-opacity-75;
+  }
 
   ul > li[aria-selected="true"]{
     @apply bg-indigo-200
