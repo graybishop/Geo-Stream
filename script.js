@@ -184,7 +184,7 @@ function streamingPreferenceOff(button) {
 }
 
 //tooltip for setting button
-let searchKeyboardToolTip = tippy(document.querySelector('#modal-settings-btn'), {
+let settingsButtonToolTip = tippy(document.querySelector('#modal-settings-btn'), {
   content: `<h2 class='text-indigo-400 text-2xl border-b border-solid border-indigo-300 mb-2'>Your Settings <i class="fa-solid fa-gears"></i></h2><p class='text-indigo-400 text-xl'>Click to edit your service preferences.</p>`,
   allowHTML: true,
   theme: 'dark-tip',
