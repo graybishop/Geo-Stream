@@ -93,6 +93,8 @@ if (localStorage.getItem("settingsPreferences") !== null) {
 }
 
 
+
+
 function SettingsAlert() {
   this.render = function () {
     // show settings modal
