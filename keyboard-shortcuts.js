@@ -1,14 +1,3 @@
-document.addEventListener('keydown', (event) => {
-    searchKeyboardToolTip.hide();
-    clearInterval(keyboardTip);
-    if (`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.includes(event.key) && document.activeElement != search) {
-        search.scrollIntoView({ behavior: 'smooth' });
-        search.focus();
-        searchKeyboardToolTip.hide();
-        // console.log(search.value)
-        // search.value = search.value.concat(event.key)
-    }
-});
 
 //creates a tooltip that only appears on the first visit to the site
 let searchKeyboardToolTip = tippy(document.querySelector('form'), {
@@ -23,6 +12,17 @@ let searchKeyboardToolTip = tippy(document.querySelector('form'), {
     arrow: false,
     animation: 'shift-away-extreme',
     inertia: true,
+});
+
+document.addEventListener('keydown', (event) => {
+    searchKeyboardToolTip.hide();
+    if (`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.includes(event.key) && document.activeElement != search) {
+        search.scrollIntoView({ behavior: 'smooth' });
+        search.focus();
+        searchKeyboardToolTip.hide();
+        // console.log(search.value)
+        // search.value = search.value.concat(event.key)
+    }
 });
 
 const resetUser = () => {
