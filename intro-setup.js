@@ -23,12 +23,10 @@ let intro = introJs().setOptions({
         title: `Fun's over. 💖`,
         intro: `That's it, you've made it to the end. Start Browsing.`
     },
-
-
     ]
 })
 
+console.log(intro)
 
-
-
-userStatus.firstTime? intro.start() : null
+intro.start()
+// userStatus.firstTime?  : null
