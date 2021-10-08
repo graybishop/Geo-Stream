@@ -34,9 +34,9 @@ if (userStatus.firstTime) {
         year: "1999",
         plot: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
         services: [
-            { name: "Netflix", url: "netflix.com" },
-            { name: "Hulu", url: "Hulu.com" },
-            { name: "Youtube TV", url: "youtube.com" },
+            { name: "Netflix", url: "netflix.com", logo: "https://image.tmdb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg"},
+            { name: "Hulu", url: "Hulu.com", logo: "https://image.tmdb.org/t/p/original/giwM8XX4V2AQb9vsoN7yti82tKK.jpg"},
+            { name: "HBO Now", url: HBOMaxUrl, logo: "https://image.tmdb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg"},
         ],
     });
 
@@ -45,9 +45,9 @@ if (userStatus.firstTime) {
         year: "2003",
         plot: "Freedom fighters Neo, Trinity and Morpheus continue to lead the revolt against the Machine Army, unleashing their arsenal of extraordinary skills and weaponry against the systematic forces of repression and exploitation.",
         services: [
-            { name: "Netflix", url: "netflix.com" },
-            { name: "Hulu", url: "Hulu.com" },
-            { name: "Youtube TV", url: "youtube.com" },
+            { name: "Netflix", url: "netflix.com", logo: "https://image.tmdb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg"},
+            { name: "Hulu", url: "Hulu.com", logo: "https://image.tmdb.org/t/p/original/giwM8XX4V2AQb9vsoN7yti82tKK.jpg"},
+            { name: "HBO Now", url: HBONowUrl, logo: "https://image.tmdb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg"},
         ],
     });
 
@@ -56,9 +56,9 @@ if (userStatus.firstTime) {
         year: "2003",
         plot: "The human city of Zion defends itself against the massive invasion of the machines as Neo fights to end the war at another front while also opposing the rogue Agent Smith.",
         services: [
-            { name: "Netflix", url: "netflix.com" },
-            { name: "Hulu", url: "Hulu.com" },
-            { name: "Youtube TV", url: "youtube.com" },
+            { name: "Netflix", url: "netflix.com", logo: "https://image.tmdb.org/t/p/original/9A1JSVmSxsyaBK4SUFsYVqbAYfW.jpg" },
+            { name: "Hulu", url: "Hulu.com", logo: "https://image.tmdb.org/t/p/original/giwM8XX4V2AQb9vsoN7yti82tKK.jpg"},
+            { name: "HBO Now", url: HBONowUrl, logo: "https://image.tmdb.org/t/p/original/aS2zvJWn9mwiCOeaaCkIh4wleZS.jpg"},
         ],
     });
 
