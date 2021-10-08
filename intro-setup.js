@@ -24,6 +24,60 @@ let intro = introJs().setOptions({
         intro: `That's it, you've made it to the end. Start Browsing.`
     },
     ]
-})
+});
 
-userStatus.firstTime? intro.start() : null
+if (userStatus.firstTime) {
+    intro.start();
+    console.log(savedMovieCards);
+    renderMovieCard({
+        title: "The Matrix",
+        year: "1999",
+        plot: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+        services: [
+            { name: "Netflix", url: "netflix.com" },
+            { name: "Hulu", url: "Hulu.com" },
+            { name: "Youtube TV", url: "youtube.com" },
+        ],
+    });
+
+    renderMovieCard({
+        title: "The Matrix Reloaded",
+        year: "2003",
+        plot: "Freedom fighters Neo, Trinity and Morpheus continue to lead the revolt against the Machine Army, unleashing their arsenal of extraordinary skills and weaponry against the systematic forces of repression and exploitation.",
+        services: [
+            { name: "Netflix", url: "netflix.com" },
+            { name: "Hulu", url: "Hulu.com" },
+            { name: "Youtube TV", url: "youtube.com" },
+        ],
+    });
+
+    renderMovieCard({
+        title: "The Matrix Revolutions",
+        year: "2003",
+        plot: "The human city of Zion defends itself against the massive invasion of the machines as Neo fights to end the war at another front while also opposing the rogue Agent Smith.",
+        services: [
+            { name: "Netflix", url: "netflix.com" },
+            { name: "Hulu", url: "Hulu.com" },
+            { name: "Youtube TV", url: "youtube.com" },
+        ],
+    });
+
+    savedMovieCards = [];
+    localStorage.setItem('movieCards', JSON.stringify([]));
+} else {
+    document.querySelector("#results-container").innerHTML = '';
+    let tempMovieStorage = savedMovieCards;
+    savedMovieCards[0] ? savedMovieCards.forEach(element => {
+        renderMovieCard(element);
+        savedMovieCards.pop();
+    }) : null;
+    localStorage.setItem('movieCards', JSON.stringify(tempMovieStorage));
+}
+
+
+
+intro.onexit(() => {
+    document.querySelector("#results-container").innerHTML = '';
+    searchKeyboardToolTip.show();
+    localStorage.setItem('movieCards', JSON.stringify([]));
+});

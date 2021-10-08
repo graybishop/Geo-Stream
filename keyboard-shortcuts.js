@@ -35,8 +35,3 @@ let userStatus = {
 };
 
 localStorage.setItem('firstTime', false);
-
-let keyboardTip= setTimeout(() => {
-    searchKeyboardToolTip.show();
-    localStorage.setItem('firstTime', false);
-    }, 20 * 1000);
