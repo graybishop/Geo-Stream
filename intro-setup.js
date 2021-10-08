@@ -26,7 +26,4 @@ let intro = introJs().setOptions({
     ]
 })
 
-console.log(intro)
-
-intro.start()
-// userStatus.firstTime?  : null
+userStatus.firstTime? intro.start() : null
