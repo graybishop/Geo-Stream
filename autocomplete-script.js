@@ -65,7 +65,7 @@ const autoCompleteJS = new autoComplete({
             if (checkInputSize(autoCompleteJS.input.value.trim())) {
               goFindSomeResults(autoCompleteJS.input.value.trim());
             }
-          }, 3000);
+          }, 750);
         }
 
       },
@@ -87,7 +87,7 @@ const autoCompleteJS = new autoComplete({
 
 //checks that there are enough chars for a search.
 const checkInputSize = () => {
-  if (autoCompleteJS.input.value.trim().length > 5) {
+  if (autoCompleteJS.input.value.trim().length > 2) {
     return true;
   }
   return false;
