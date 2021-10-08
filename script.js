@@ -323,7 +323,7 @@ renderMovieCard({
   services: [
     { name: "Netflix", url: "netflix.com" },
     { name: "Hulu", url: "Hulu.com" },
-    { name: "YoutubeTV", url: "yotube.com" },
+    { name: "Youtube TV", url: "youtube.com" },
   ],
 });
 
@@ -334,7 +334,7 @@ renderMovieCard({
   services: [
     { name: "Netflix", url: "netflix.com" },
     { name: "Hulu", url: "Hulu.com" },
-    { name: "YoutubeTV", url: "yotube.com" },
+    { name: "Youtube TV", url: "youtube.com" },
   ],
 });
 
@@ -345,7 +345,7 @@ renderMovieCard({
   services: [
     { name: "Netflix", url: "netflix.com" },
     { name: "Hulu", url: "Hulu.com" },
-    { name: "YoutubeTV", url: "yotube.com" },
+    { name: "Youtube TV", url: "youtube.com" },
   ],
 });
 

@@ -26,4 +26,9 @@ let intro = introJs().setOptions({
     ]
 })
 
-userStatus.firstTime? intro.start() : null
+userStatus.firstTime? intro.start() : document.querySelector("#results-container").innerHTML =''
+
+intro.onexit(()=>{
+    document.querySelector("#results-container").innerHTML =''
+    searchKeyboardToolTip.show()
+})
