@@ -256,8 +256,9 @@ const renderMovieCard = ({ title, year, plot, services }) => {
 
   services.forEach((element) => {
     let newP = document.createElement("a");
-    newP.textContent = element.name;
+    // newP.textContent = element.name;
     newP.href = element.url;
+    newP.innerHTML = "<img alt='" + element.name + " logo' src='" + element.logo + "' width='80' height='80'>"
     console.log(element.url);
     newP.classList.add("test");
     servicesEl.append(newP);
@@ -433,8 +434,6 @@ function varifyId(idToVarify) {
     });
 }
 
-function getStreamingServicesUrl() {}
-
 // This will use the movieDB id and the entertainment
 // type variables to return the services providers or will prompt the user there are none.
 function getStreamingServicesMovTv(imdbId, entertainmentType) {
@@ -460,69 +459,71 @@ function getStreamingServicesMovTv(imdbId, entertainmentType) {
       } else if (Object.keys(data.results.US).includes("flatrate")) {
         for (var j = 0; j < data.results.US.flatrate.length; j++) {
           services[j] = data.results.US.flatrate[j].provider_name;
+          var logoPath = data.results.US.flatrate[j].logo_path;
+          var networkLogo = getNetworkLogo(logoPath);
           switch (services[j]) {
             case "IMDB TV Amazon Channel":
-              obj.services[j] = { name: services[j], url: imdbUrl };
+              obj.services[j] = { name: services[j], url: imdbUrl, logo: networkLogo };
               break;
             case "Hulu":
-              obj.services[j] = { name: services[j], url: huluUrl };
+              obj.services[j] = { name: services[j], url: huluUrl, logo: networkLogo };
               break;
             case "fuboTV":
-              obj.services[j] = { name: services[j], url: fuboTvUrl };
+              obj.services[j] = { name: services[j], url: fuboTvUrl, logo: networkLogo };
               break;
             case "Netflix":
-              obj.services[j] = { name: services[j], url: netflixUrl };
+              obj.services[j] = { name: services[j], url: netflixUrl, logo: networkLogo };
               break;
             case "Apple TV Plus":
-              obj.services[j] = { name: services[j], url: appleTvPlusUrl };
+              obj.services[j] = { name: services[j], url: appleTvPlusUrl, logo: networkLogo };
               break;
             case "YoutubeTV":
-              obj.services[j] = { name: services[j], url: YoutubeTvUrl };
+              obj.services[j] = { name: services[j], url: YoutubeTvUrl, logo: networkLogo };
               break;
             case "HBO Max":
-              obj.services[j] = { name: services[j], url: HBOMaxUrl };
+              obj.services[j] = { name: services[j], url: HBOMaxUrl, logo: networkLogo };
               break;
             case "HBO Now":
-              obj.services[j] = { name: services[j], url: HBONowUrl };
+              obj.services[j] = { name: services[j], url: HBONowUrl, logo: networkLogo };
               break;
             case "DIRECTV":
-              obj.services[j] = { name: services[j], url: DirecTvUrl };
+              obj.services[j] = { name: services[j], url: DirecTvUrl, logo: networkLogo };
               break;
             case "Disney Plus":
-                obj.services[j] = { name: services[j], url: disneyPlusUrl };
+                obj.services[j] = { name: services[j], url: disneyPlusUrl, logo: networkLogo };
                 break;
             case "TNT":
-              obj.services[j] = { name: services[j], url: tntUrl };
+              obj.services[j] = { name: services[j], url: tntUrl, logo: networkLogo };
               break;
             case "TBS":
-              obj.services[j] = { name: services[j], url: tbsUrl };
+              obj.services[j] = { name: services[j], url: tbsUrl, logo: networkLogo };
               break;
             case "tru TV":
-              obj.services[j] = { name: services[j], url: truTvUrl };
+              obj.services[j] = { name: services[j], url: truTvUrl, logo: networkLogo };
               break;
             case "Paramount+ Amazon Channel":
-                obj.services[j] = { name: services[j], url: paramountPlusUrl };
+                obj.services[j] = { name: services[j], url: paramountPlusUrl, logo: networkLogo };
                 break;
             case "CBS":
-                obj.services[j] = { name: services[j], url: cbsUrl };
+                obj.services[j] = { name: services[j], url: cbsUrl, logo: networkLogo };
                 break; 
             case "Sling TV":
-                obj.services[j] = { name: services[j], url: slingTvUrl };
+                obj.services[j] = { name: services[j], url: slingTvUrl, logo: networkLogo };
                 break; 
             case "Spectrum On Demand":
-                obj.services[j] = { name: services[j], url: spectrumOnDemandUrl };
+                obj.services[j] = { name: services[j], url: spectrumOnDemandUrl, logo: networkLogo };
                 break; 
             case "Peacock Premium":
-                obj.services[j] = { name: services[j], url: peacokPremiumUrl };
+                obj.services[j] = { name: services[j], url: peacokPremiumUrl, logo: networkLogo };
                 break; 
             case "Funimation Now":
-                obj.services[j] = { name: services[j], url: funimationNowUrl };
+                obj.services[j] = { name: services[j], url: funimationNowUrl, logo: networkLogo };
                 break; 
             case "Adult Swim":
-                obj.services[j] = { name: services[j], url: adultSwimUrl };
+                obj.services[j] = { name: services[j], url: adultSwimUrl, logo: networkLogo };
                 break; 
             default:
-              obj.services[j] = { name: "Add more streaming services!!" };
+              obj.services[j] = { name: data.results.US.flatrate[j].provider_name, url: " ", logo: networkLogo};
               break;
           }
         }
@@ -534,6 +535,21 @@ function getStreamingServicesMovTv(imdbId, entertainmentType) {
       renderMovieCard(obj);
     });
 }
+
+// Get steaming services logos
+function getNetworkLogo(logoPath) {
+  var networkLogoLookupUrl = "https://image.tmdb.org/t/p/original" + logoPath;
+  return networkLogoLookupUrl;
+  // fetch(networkLogoLookupUrl)
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then(function (data) {
+  //     console.log(data);
+  //     return data;
+  //   });
+}
+
 
 // This is the same functionality as getStreamingServicesMovTv function but for tv seasons
 // This will also use the seasonNum with a default value of season 1.
@@ -569,69 +585,71 @@ function getStreamingServicesTvSeason(
       } else if (Object.keys(data.results.US).includes("flatrate")) {
         for (var j = 0; j < data.results.US.flatrate.length; j++) {
           services[j] = data.results.US.flatrate[j].provider_name;
+          var logoPath = data.results.US.flatrate[j].logo_path;
+          var networkLogo = getNetworkLogo(logoPath);
           switch (services[j]) {
             case "IMDB TV Amazon Channel":
-              obj.services[j] = { name: services[j], url: imdbUrl };
+              obj.services[j] = { name: services[j], url: imdbUrl, logo: networkLogo };
               break;
             case "Hulu":
-              obj.services[j] = { name: services[j], url: huluUrl };
+              obj.services[j] = { name: services[j], url: huluUrl, logo: networkLogo };
               break;
             case "fuboTV":
-              obj.services[j] = { name: services[j], url: fuboTvUrl };
+              obj.services[j] = { name: services[j], url: fuboTvUrl, logo: networkLogo };
               break;
             case "Netflix":
-              obj.services[j] = { name: services[j], url: netflixUrl };
+              obj.services[j] = { name: services[j], url: netflixUrl, logo: networkLogo };
               break;
             case "Apple TV Plus":
-              obj.services[j] = { name: services[j], url: appleTvPlusUrl };
+              obj.services[j] = { name: services[j], url: appleTvPlusUrl, logo: networkLogo };
               break;
             case "YoutubeTV":
-              obj.services[j] = { name: services[j], url: YoutubeTvUrl };
+              obj.services[j] = { name: services[j], url: YoutubeTvUrl, logo: networkLogo };
               break;
             case "HBO Max":
-              obj.services[j] = { name: services[j], url: HBOMaxUrl };
+              obj.services[j] = { name: services[j], url: HBOMaxUrl, logo: networkLogo };
               break;
             case "HBO Now":
-              obj.services[j] = { name: services[j], url: HBONowUrl };
+              obj.services[j] = { name: services[j], url: HBONowUrl, logo: networkLogo };
               break;
             case "DIRECTV":
-              obj.services[j] = { name: services[j], url: DirecTvUrl };
+              obj.services[j] = { name: services[j], url: DirecTvUrl, logo: networkLogo };
               break;
             case "Disney Plus":
-                obj.services[j] = { name: services[j], url: disneyPlusUrl };
+                obj.services[j] = { name: services[j], url: disneyPlusUrl, logo: networkLogo };
                 break;
             case "TNT":
-              obj.services[j] = { name: services[j], url: tntUrl };
+              obj.services[j] = { name: services[j], url: tntUrl, logo: networkLogo };
               break;
             case "TBS":
-              obj.services[j] = { name: services[j], url: tbsUrl };
+              obj.services[j] = { name: services[j], url: tbsUrl, logo: networkLogo };
               break;
             case "tru TV":
-              obj.services[j] = { name: services[j], url: truTvUrl };
+              obj.services[j] = { name: services[j], url: truTvUrl, logo: networkLogo };
               break;
             case "Paramount+ Amazon Channel":
-                obj.services[j] = { name: services[j], url: paramountPlusUrl };
+                obj.services[j] = { name: services[j], url: paramountPlusUrl, logo: networkLogo };
                 break;
             case "CBS":
-                obj.services[j] = { name: services[j], url: cbsUrl };
+                obj.services[j] = { name: services[j], url: cbsUrl, logo: networkLogo };
                 break; 
             case "Sling TV":
-                obj.services[j] = { name: services[j], url: slingTvUrl };
+                obj.services[j] = { name: services[j], url: slingTvUrl, logo: networkLogo };
                 break; 
             case "Spectrum On Demand":
-                obj.services[j] = { name: services[j], url: spectrumOnDemandUrl };
+                obj.services[j] = { name: services[j], url: spectrumOnDemandUrl, logo: networkLogo };
                 break; 
             case "Peacock Premium":
-                obj.services[j] = { name: services[j], url: peacokPremiumUrl };
+                obj.services[j] = { name: services[j], url: peacokPremiumUrl, logo: networkLogo };
                 break; 
             case "Funimation Now":
-                obj.services[j] = { name: services[j], url: funimationNowUrl };
+                obj.services[j] = { name: services[j], url: funimationNowUrl, logo: networkLogo };
                 break; 
             case "Adult Swim":
-                obj.services[j] = { name: services[j], url: adultSwimUrl };
+                obj.services[j] = { name: services[j], url: adultSwimUrl, logo: networkLogo };
                 break; 
             default:
-              obj.services[j] = { name: "Add more streaming services!!" };
+              obj.services[j] = { name: data.results.US.flatrate[j].provider_name, url: " ", logo: networkLogo };
               break;
           }
         }
