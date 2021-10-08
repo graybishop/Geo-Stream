@@ -110,30 +110,21 @@ if (localStorage.getItem("settingsPreferences") !== null) {
 function SettingsAlert() {
   this.render = function () {
     // show settings modal
-    var settingsModalPopup = document.getElementById("settings-modal-popup");
-    var settingsModalOverlay = document.getElementById(
-      "settings-modal-overlay"
-    );
-    settingsModalPopup.setAttribute(
-      "class",
-      "w-2/4 h-auto overflow-hidden bg-gray-900 text-indigo-300 shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center visible"
-    );
-    settingsModalOverlay.setAttribute("class", "visible");
-    // close settings modal
-    document.getElementById("settings-modal-close").innerHTML =
-      "<button onclick='Alert.ok()'>Close</button>";
+    let settingsModalPopup = document.getElementById("settings-modal-popup");
+    let blackoutEl = document.getElementById("modal-blackout");
+    settingsModalPopup.classList.add("visible");
+    settingsModalPopup.classList.remove("hidden");
+    blackoutEl.classList.add("visible");
+    blackoutEl.classList.remove("hidden");
   };
 
   this.ok = function () {
-    document
-      .getElementById("settings-modal-popup")
-      .setAttribute(
-        "class",
-        "w-2/4 h-auto overflow-hidden shadow-lg rounded-lg absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 p-10px text-center invisible"
-      );
-    document
-      .getElementById("settings-modal-overlay")
-      .setAttribute("class", "invisible");
+    let settingsModalPopup = document.getElementById("settings-modal-popup");
+    let blackoutEl = document.getElementById("modal-blackout");
+    settingsModalPopup.classList.add("hidden");
+    settingsModalPopup.classList.remove("visible");
+    blackoutEl.classList.add("hidden");
+    blackoutEl.classList.remove("visible");
   };
 }
 
@@ -203,6 +194,17 @@ function streamingPreferenceOff(button) {
   );
   console.log(localStorage.getItem("settingsPreferences"));
 }
+
+//tooltip for setting button
+let settingsButtonToolTip = tippy(document.querySelector('#modal-settings-btn'), {
+  content: `<h2 class='text-indigo-400 text-2xl border-b border-solid border-indigo-300 mb-2'>Your Settings <i class="fa-solid fa-gears"></i></h2><p class='text-indigo-400 text-xl'>Click to edit your service preferences.</p>`,
+  allowHTML: true,
+  theme: 'dark-tip',
+  maxWidth: 250,
+  placement: 'bottom',
+  animation: 'shift-away-extreme',
+  inertia: true,
+});
 
 // form.addEventListener()
 if (localStorage.getItem("recentMovieSearches") !== null) {

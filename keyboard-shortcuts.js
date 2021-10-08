@@ -1,8 +1,6 @@
 document.addEventListener('keydown', (event) => {
-    console.log(event)
-    console.log(event.key)
     searchKeyboardToolTip.hide();
-    clearInterval(keyboardTip)
+    clearInterval(keyboardTip);
     if (`ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`.includes(event.key) && document.activeElement != search) {
         search.scrollIntoView({ behavior: 'smooth' });
         search.focus();
@@ -27,13 +25,18 @@ let searchKeyboardToolTip = tippy(document.querySelector('form'), {
     inertia: true,
 });
 
-let userStatus = { 
-    firstTime : !localStorage.getItem('firstTime')? true : false,
-}
-let keyboardTip;
-if(userStatus.firstTime){
-    keyboardTip = setTimeout(() => {
+const resetUser = () => {
+    localStorage.clear();
+    location.reload();
+};
+
+let userStatus = {
+    firstTime: !localStorage.getItem('firstTime') ? true : false
+};
+
+localStorage.setItem('firstTime', false);
+
+let keyboardTip= setTimeout(() => {
     searchKeyboardToolTip.show();
-    localStorage.setItem('firstTime', false)
-}, 750);
-}
+    localStorage.setItem('firstTime', false);
+    }, 20 * 1000);

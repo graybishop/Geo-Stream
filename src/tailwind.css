@@ -16,4 +16,8 @@
   ul > li[aria-selected="true"]{
     @apply bg-indigo-200
   }
+
+  .introjs-tooltip{
+    @apply bg-gray-100 max-w-4xl w-96 min-w-min
+  }
 }
