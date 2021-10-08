@@ -8,7 +8,7 @@ Our project is a movie finder app that helps you find where you can watch your f
 
 ## Links
 you can find our github code here.
-https://github.com/graybishop/Geo-Stream
+https://graybishop.github.io/Geo-Stream/
 
 ## Screenshots
 ![Screenshot (48)](https://user-images.githubusercontent.com/87917345/136581935-de998667-4eb5-4993-917a-cad42e68cf38.png)
@@ -37,19 +37,26 @@ When you first open the page you will will be toured through the page explaining
 
 
 ## Tech Stack
-html5 and css: The html and css were used for basic styleing and skeleton of the page.
+###html5 and css 
+The html and css were used for basic styleing and skeleton of the page.
 
-javascript: Javascript was used for alost every portion of this project and played a big part in the site develoement. https://www.javascript.com/
+###javascript 
+Javascript was used for alost every portion of this project and played a big part in the site develoement. https://www.javascript.com/
 
-tailwinds css: Tailwinds was our choice of framework since not using bootstrap was in our parameters. It took some reading but the framework was easy to pick up and helped make our site look really well put together. https://tailwindcss.com/
+###tailwinds css
+Tailwinds was our choice of framework since not using bootstrap was in our parameters. It took some reading but the framework was easy to pick up and helped make our site look really well put together. https://tailwindcss.com/
 
-splidejs: We used this for our carousel projecting the most popular movies and shows. https://splidejs.com/
+###splidejs
+We used this for our carousel projecting the most popular movies and shows. https://splidejs.com/
 
-auto complete js: Used to auto fill what the user may be searching. https://tarekraafat.github.io/autoComplete.js/#/
+###auto complete js
+Used to auto fill what the user may be searching. https://tarekraafat.github.io/autoComplete.js/#/
 
-introjs: We used this for the opening tutorial that takes you around the page and explains features and options to the user. https://introjs.com/
+###introjs
+We used this for the opening tutorial that takes you around the page and explains features and options to the user. https://introjs.com/
 
-imdb,ombd, movie db: These were the sites we used apis for to pull information to our site.
+###imdb,ombd, movie db
+These were the sites we used apis for to pull information to our site.
 https://www.imdb.com/
 http://www.omdbapi.com/
 https://www.themoviedb.org/?language=en-US
