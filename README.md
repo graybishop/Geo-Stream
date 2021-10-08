@@ -11,6 +11,9 @@ you can find our github code here.
 https://github.com/graybishop/Geo-Stream
 
 ## Screenshots
+![Screenshot (48)](https://user-images.githubusercontent.com/87917345/136581935-de998667-4eb5-4993-917a-cad42e68cf38.png)
+![Screenshot (49)](https://user-images.githubusercontent.com/87917345/136581939-c9aed4fc-f750-4adf-af21-2765a04d505a.png)
+![Screenshot (50)](https://user-images.githubusercontent.com/87917345/136581942-796b1349-ba38-4684-97f2-53f06290d30d.png)
 
 
 
