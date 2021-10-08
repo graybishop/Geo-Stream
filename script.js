@@ -241,7 +241,13 @@ function clearClick() {
 }
 
 //given an object with the properties title, plot, year, and services this function renders the result into the results container
+//global for saving movie cards to local storage
+let savedMovieCards = JSON.parse(localStorage.getItem('movieCards')) ?? []
+
 const renderMovieCard = ({ title, year, plot, services }) => {
+  savedMovieCards.push({ title, year, plot, services })
+  localStorage.setItem('movieCards', JSON.stringify(savedMovieCards))
+
   let cardEl = document.createElement("div");
   let cardTextHolderEl = document.createElement("div");
 
@@ -313,41 +319,10 @@ const renderMovieCard = ({ title, year, plot, services }) => {
     cardEl.classList.remove("scale-0");
     cardEl.classList.add("scale-y-100");
   }, 25);
+
+
 };
 
-//example cards for styling
-renderMovieCard({
-  title: "The Matrix",
-  year: "1999",
-  plot: "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-  services: [
-    { name: "Netflix", url: "netflix.com" },
-    { name: "Hulu", url: "Hulu.com" },
-    { name: "Youtube TV", url: "youtube.com" },
-  ],
-});
-
-renderMovieCard({
-  title: "The Matrix Reloaded",
-  year: "2003",
-  plot: "Freedom fighters Neo, Trinity and Morpheus continue to lead the revolt against the Machine Army, unleashing their arsenal of extraordinary skills and weaponry against the systematic forces of repression and exploitation.",
-  services: [
-    { name: "Netflix", url: "netflix.com" },
-    { name: "Hulu", url: "Hulu.com" },
-    { name: "Youtube TV", url: "youtube.com" },
-  ],
-});
-
-renderMovieCard({
-  title: "The Matrix Revolutions",
-  year: "2003",
-  plot: "The human city of Zion defends itself against the massive invasion of the machines as Neo fights to end the war at another front while also opposing the rogue Agent Smith.",
-  services: [
-    { name: "Netflix", url: "netflix.com" },
-    { name: "Hulu", url: "Hulu.com" },
-    { name: "Youtube TV", url: "youtube.com" },
-  ],
-});
 
 // this gets the IMDB movie id from the open movie database when the user inputs a title.
 // Then it uses that id to call varifyId function.
