@@ -40,22 +40,22 @@ When you first open the page you will will be toured through the page explaining
 ###html5 and css 
 The html and css were used for basic styleing and skeleton of the page.
 
-###javascript 
+### javascript 
 Javascript was used for alost every portion of this project and played a big part in the site develoement. https://www.javascript.com/
 
-###tailwinds css
+### tailwinds css
 Tailwinds was our choice of framework since not using bootstrap was in our parameters. It took some reading but the framework was easy to pick up and helped make our site look really well put together. https://tailwindcss.com/
 
-###splidejs
+### splidejs
 We used this for our carousel projecting the most popular movies and shows. https://splidejs.com/
 
-###auto complete js
+### auto complete js
 Used to auto fill what the user may be searching. https://tarekraafat.github.io/autoComplete.js/#/
 
-###introjs
+### introjs
 We used this for the opening tutorial that takes you around the page and explains features and options to the user. https://introjs.com/
 
-###imdb,ombd, movie db
+### imdb,ombd, movie db
 These were the sites we used apis for to pull information to our site.
 https://www.imdb.com/
 http://www.omdbapi.com/
