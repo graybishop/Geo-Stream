@@ -28,10 +28,11 @@ let searchKeyboardToolTip = tippy(document.querySelector('form'), {
 let userStatus = { 
     firstTime : !localStorage.getItem('firstTime')? true : false,
 }
+
 let keyboardTip;
 if(userStatus.firstTime){
     keyboardTip = setTimeout(() => {
     searchKeyboardToolTip.show();
     localStorage.setItem('firstTime', false)
-}, 750);
+}, 20*1000);
 }
