@@ -264,9 +264,8 @@ const renderMovieCard = ({ title, year, plot, services }) => {
     let newP = document.createElement("a");
     // newP.textContent = element.name;
     newP.href = element.url;
-    newP.innerHTML = "<img alt='" + element.name + " logo' src='" + element.logo + "' width='80' height='80'>"
+    newP.innerHTML = "<img alt='" + element.name + " logo' src='" + element.logo + "' width='80' height='80' class='rounded'>"
     console.log(element.url);
-    newP.classList.add("test");
     servicesEl.append(newP);
   });
 
@@ -308,9 +307,11 @@ const renderMovieCard = ({ title, year, plot, services }) => {
     "font-bold",
     "text-gray-700",
     "flex",
-    "flex-col",
-    "justify-end",
-    "w-40"
+    "flex-row",
+    "flex-wrap",
+    "justify-start",
+    "max-w-sm",
+    'gap-2',
   );
 
   //adds result to top of list
